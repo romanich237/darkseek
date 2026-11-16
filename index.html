@@ -9,15 +9,23 @@
 <body>
   <main id="auth" class="auth">
     <aside class="brand">
-      <strong>darkseek</strong><small>/ НИЧЕГО ЛИШНЕГО</small>
+      <strong>darkseek</strong>
+      <small>/ НИЧЕГО ЛИШНЕГО</small>
       <h1>Ваши слова.<br>Не ваша личность.</h1>
       <p>Пространство для общения без номера<br> телефона, почты и настоящего имени.</p>
       <figure class="orbit">
-        <i></i><i></i><i></i><i></i>
-        <div class="key-card"><span>⚿</span> •••• •••• •••• ••••</div>
+        <i></i>
+        <i></i>
+        <i></i>
+        <i></i>
+        <div class="key-card">
+          <span>⚿</span> •••• •••• •••• ••••
+        </div>
         <figcaption>16 СИМВОЛОВ. ТОЛЬКО ВАШ ДОСТУП.</figcaption>
       </figure>
-      <footer><span>♧</span> Без телефона <span></span> Без почты <span></span> Без имени</footer>
+      <footer>
+        <span>♧</span> Без телефона <span></span> Без почты <span></span> Без имени
+      </footer>
     </aside>
     <section class="access">
       <small class="locale">RU / DARKSEEK</small>
@@ -26,7 +34,10 @@
         <h2>С возвращением<br>в тень.</h2>
         <p>Один ключ — всё, что нужно для входа.</p>
         <label for="access-key">Ключ доступа</label>
-        <div class="field"><input id="access-key" value="V7Q9 N4RX 2K8M T6WP" maxlength="19" autocomplete="off" spellcheck="false"><span aria-hidden="true">♙</span></div>
+        <div class="field">
+          <input id="access-key" value="V7Q9 N4RX 2K8M T6WP" maxlength="19" autocomplete="off" spellcheck="false">
+          <span aria-hidden="true">♙</span>
+        </div>
         <small id="key-status" aria-live="polite">16 / 16 · Демонстрационный ключ</small>
         <button class="primary">Войти в Darkseek <span>→</span></button>
         <button class="secondary" id="create" type="button">Создать анонимный профиль <span>⚿</span></button>
@@ -38,9 +49,14 @@
         <h2>Ваша анонимность<br>начинается с ключа.</h2>
         <p>Мы не просим личных данных. Сохраните ключ: он заменяет логин и пароль.</p>
         <small class="accent">ВАШ КЛЮЧ ДОСТУПА · 16 СИМВОЛОВ</small>
-        <div class="field key-value"><code>V7Q9 N4RX 2K8M T6WP</code></div>
+        <div class="field key-value">
+          <code>V7Q9 N4RX 2K8M T6WP</code>
+        </div>
         <small>Пробелы — только для удобства чтения.</small>
-        <aside class="warning"><strong>Потеряете ключ — потеряете доступ.</strong><p>Для новых диалогов используйте публичный ID, а не ключ.</p></aside>
+        <aside class="warning">
+          <strong>Потеряете ключ — потеряете доступ.</strong>
+          <p>Для новых диалогов используйте публичный ID, а не ключ.</p>
+        </aside>
         <button id="continue" class="primary">Я сохранил ключ. Продолжить <span>→</span></button>
         <p class="hint">В прототипе используется пример ключа.</p>
       </section>
@@ -56,19 +72,38 @@
       <span class="avatar" aria-hidden="true">✣</span>
     </nav>
     <aside class="dialogs" aria-label="Список диалогов">
-      <strong>darkseek</strong><small>АНОНИМНЫЙ МЕССЕНДЖЕР</small>
-      <div class="section-heading"><h2>Диалоги</h2><button class="primary search-trigger" aria-label="Новый диалог">+</button></div>
+      <strong>darkseek</strong>
+      <small>АНОНИМНЫЙ МЕССЕНДЖЕР</small>
+      <div class="section-heading">
+        <h2>Диалоги</h2>
+        <button class="primary search-trigger" aria-label="Новый диалог">+</button>
+      </div>
       <button class="secondary search-trigger">⌕ &nbsp; Найти по публичному ID</button>
       <small class="list-label">ВСЕ ДИАЛОГИ <span id="contact-count"></span></small>
       <div id="contacts"></div>
-      <button class="secondary profile-trigger own-id"><small>ВАШ ПУБЛИЧНЫЙ ID</small><code>shade_8f3c</code></button>
+      <button class="secondary profile-trigger own-id">
+        <small>ВАШ ПУБЛИЧНЫЙ ID</small>
+        <code>shade_8f3c</code>
+      </button>
     </aside>
     <section class="chat">
-      <header><span class="avatar" id="chat-avatar" aria-hidden="true">✦</span><div><code id="peer">ghost_7a2f</code><small>Публичный ID · личные данные скрыты</small></div><button class="quiet profile-trigger" aria-label="О приватности диалога">ⓘ</button></header>
-      <div class="notice"><span>⚿</span> Делитесь публичным ID. Личный ключ нужен только для входа.</div>
+      <header>
+        <span class="avatar" id="chat-avatar" aria-hidden="true">✦</span>
+        <div>
+          <code id="peer">ghost_7a2f</code>
+          <small>Публичный ID · личные данные скрыты</small>
+        </div>
+        <button class="quiet profile-trigger" aria-label="О приватности диалога">ⓘ</button>
+      </header>
+      <div class="notice">
+        <span>⚿</span> Делитесь публичным ID. Личный ключ нужен только для входа.
+      </div>
       <div class="history"></div>
       <div class="composer">
-        <div class="field"><input aria-label="Сообщение" disabled placeholder="Написать сообщение…"><button class="primary" type="button" disabled aria-label="Отправить сообщение">➤</button></div>
+        <div class="field">
+          <input aria-label="Сообщение" disabled placeholder="Написать сообщение…">
+          <button class="primary" type="button" disabled aria-label="Отправить сообщение">➤</button>
+        </div>
       </div>
     </section>
   </main>
@@ -79,7 +114,10 @@
       <h2>Новый диалог</h2>
       <p>Найдите человека по публичному ID.<br>Его личный ключ доступа не нужен.</p>
       <label for="public-id">Публичный ID собеседника</label>
-      <div class="field"><span>⌕</span><input id="public-id" value="ghost_7a2f" maxlength="24" required autocomplete="off"></div>
+      <div class="field">
+        <span>⌕</span>
+        <input id="public-id" value="ghost_7a2f" maxlength="24" required autocomplete="off">
+      </div>
       <small>Пример ID в этом прототипе</small>
       <button class="primary">Открыть диалог <span>→</span></button>
       <small>Никогда не вводите здесь свой 16-символьный ключ.</small>
@@ -90,7 +128,10 @@
     <span class="avatar" aria-hidden="true">♧</span>
     <h2>Ваша личность — вне чата.</h2>
     <p>Без телефона, почты и настоящего имени.</p>
-    <div class="field public-key"><small>ЭТИМ ID МОЖНО ПОДЕЛИТЬСЯ</small><code>shade_8f3c</code></div>
+    <div class="field public-key">
+      <small>ЭТИМ ID МОЖНО ПОДЕЛИТЬСЯ</small>
+      <code>shade_8f3c</code>
+    </div>
     <strong>Личный ключ — только для вас</strong>
     <p>Ключ из 16 символов открывает доступ к профилю. Не передавайте его собеседникам.</p>
     <p class="hint">Это демонстрация интерфейса.</p>
@@ -182,8 +223,12 @@
       $('search').showModal();
       $('public-id').select();
     });
-    for (const button of document.querySelectorAll('.profile-trigger')) button.addEventListener('click', () => $('profile').showModal());
-    for (const button of document.querySelectorAll('.close')) button.addEventListener('click', () => button.closest('dialog').close());
+    for (const button of document.querySelectorAll('.profile-trigger')) {
+      button.addEventListener('click', () => $('profile').showModal());
+    }
+    for (const button of document.querySelectorAll('.close')) {
+      button.addEventListener('click', () => button.closest('dialog').close());
+    }
     $('profile-ok').addEventListener('click', () => $('profile').close());
     $('public-id').addEventListener('input', event => event.target.setCustomValidity(''));
     $('search-form').addEventListener('submit', event => {
