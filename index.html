@@ -66,11 +66,10 @@
     <section class="chat">
       <header><span class="avatar" id="chat-avatar" aria-hidden="true">✦</span><div><code id="peer">ghost_7a2f</code><small>Публичный ID · личные данные скрыты</small></div><button class="quiet profile-trigger" aria-label="О приватности диалога">ⓘ</button></header>
       <div class="notice"><span>⚿</span> Делитесь публичным ID. Личный ключ нужен только для входа.</div>
-      <div id="history" class="history" role="log" aria-label="Переписка"></div>
-      <form id="composer" class="composer">
-        <div class="field"><input id="message" aria-label="Сообщение" maxlength="500" placeholder="Написать сообщение…"><button class="primary" id="send" aria-label="Отправить сообщение">➤</button></div>
-        <small>Демо-переписка <span>Enter — отправить</span></small>
-      </form>
+      <div class="history"></div>
+      <div class="composer">
+        <div class="field"><input aria-label="Сообщение" disabled placeholder="Написать сообщение…"><button class="primary" type="button" disabled aria-label="Отправить сообщение">➤</button></div>
+      </div>
     </section>
   </main>
   <dialog id="search">
@@ -94,50 +93,24 @@
     <div class="field public-key"><small>ЭТИМ ID МОЖНО ПОДЕЛИТЬСЯ</small><code>shade_8f3c</code></div>
     <strong>Личный ключ — только для вас</strong>
     <p>Ключ из 16 символов открывает доступ к профилю. Не передавайте его собеседникам.</p>
-    <p class="hint">Это демонстрация интерфейса. Сообщения хранятся только до перезагрузки страницы.</p>
+    <p class="hint">Это демонстрация интерфейса.</p>
     <button class="primary" id="profile-ok">Понятно</button>
   </dialog>
   <script>
     const $ = id => document.getElementById(id);
     const contacts = [
-      ['ghost_7a2f', 'То, что нужно. Остаёмся на связи.', '14:38', '#c5f569', '✦'],
-      ['echo_09b1', 'Спасибо, загляну вечером.', '13:51', '#b0b8f6', '✣'],
-      ['noir_f018', 'Принято. До завтра.', '12:06', '#78c6b7', '✤'],
-      ['void_c4e2', 'Нашёл интересную идею.', 'Вчера', '#d0ac7f', '✥'],
-      ['moss_22d9', 'Давай обсудим здесь.', 'Вчера', '#a4c48d', '✦'],
-      ['veil_8c01', 'Хорошо, договорились.', 'Пн', '#bfabd4', '✣'],
+      ['ghost_7a2f', '#c5f569', '✦'],
+      ['echo_09b1', '#b0b8f6', '✣'],
+      ['noir_f018', '#78c6b7', '✤'],
+      ['void_c4e2', '#d0ac7f', '✥'],
+      ['moss_22d9', '#a4c48d', '✦'],
+      ['veil_8c01', '#bfabd4', '✣'],
     ];
-    const threads = new Map([['ghost_7a2f', [
-      ['Привет. Здесь можно просто быть собой?', '14:32', false],
-      ['Да. Здесь достаточно псевдонима. Никаких номеров и настоящих имён.', '14:33', true],
-      ['Отлично. А как добавить нового человека?', '14:35', false],
-      ['По публичному ID. Ключ доступа остаётся только у тебя.', '14:36', true],
-      ['То, что нужно. Остаёмся на связи.', '14:38', false],
-    ]]]);
     let active = contacts[0][0];
-
-    function renderChat() {
-      const history = $('history');
-      const day = document.createElement('small');
-      day.className = 'day';
-      day.textContent = 'СЕГОДНЯ';
-      history.replaceChildren(day);
-      for (const [text, time, outgoing] of threads.get(active) || []) {
-        const bubble = document.createElement('article');
-        bubble.className = outgoing ? 'bubble outgoing' : 'bubble';
-        const message = document.createElement('p');
-        message.textContent = text;
-        const timestamp = document.createElement('time');
-        timestamp.textContent = outgoing ? time + ' ✓✓' : time;
-        bubble.append(message, timestamp);
-        history.append(bubble);
-      }
-      history.scrollTop = history.scrollHeight;
-    }
 
     function renderContacts() {
       $('contact-count').textContent = contacts.length;
-      $('contacts').replaceChildren(...contacts.map(([id, preview, time, color, mark]) => {
+      $('contacts').replaceChildren(...contacts.map(([id, color, mark]) => {
         const button = document.createElement('button');
         button.className = 'contact';
         button.setAttribute('aria-pressed', id === active);
@@ -148,12 +121,8 @@
         const summary = document.createElement('span');
         const name = document.createElement('code');
         name.textContent = id;
-        const note = document.createElement('small');
-        note.textContent = preview;
-        summary.append(name, note);
-        const timestamp = document.createElement('time');
-        timestamp.textContent = time;
-        button.append(avatar, summary, timestamp);
+        summary.append(name);
+        button.append(avatar, summary);
         button.addEventListener('click', () => openChat(id));
         return button;
       }));
@@ -161,16 +130,13 @@
 
     function openChat(id) {
       active = id;
-      const [, , , color, mark] = contacts.find(contact => contact[0] === id);
+      const [, color, mark] = contacts.find(contact => contact[0] === id);
       $('peer').textContent = id;
       $('chat-avatar').textContent = mark;
       $('chat-avatar').style.color = color;
-      $('message').value = id === 'ghost_7a2f' && threads.get(id).length === 5 ? 'Хорошо, до связи.' : '';
-      $('send').disabled = !$('message').value;
       $('messenger').classList.remove('show-dialogs');
       $('dialogs-toggle').setAttribute('aria-expanded', 'false');
       renderContacts();
-      renderChat();
     }
 
     function enter() {
@@ -231,24 +197,6 @@
       }
       $('search').close();
       openChat(id);
-    });
-    $('message').addEventListener('input', () => { $('send').disabled = !$('message').value.trim(); });
-    $('composer').addEventListener('submit', event => {
-      event.preventDefault();
-      const input = $('message');
-      const message = input.value.trim();
-      if (!message) return;
-      const time = new Intl.DateTimeFormat('ru-RU', { hour: '2-digit', minute: '2-digit' }).format(new Date());
-      if (!threads.has(active)) threads.set(active, []);
-      threads.get(active).push([message, time, true]);
-      const contact = contacts.find(contact => contact[0] === active);
-      contact[1] = message;
-      contact[2] = time;
-      input.value = '';
-      $('send').disabled = true;
-      renderChat();
-      renderContacts();
-      input.focus();
     });
   </script>
 </body>

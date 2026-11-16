@@ -81,11 +81,9 @@ figcaption { position: absolute; top: calc(50% + 85px); color: var(--muted); fon
 .section-heading button { padding: 4px 12px; min-height: 36px; font-size: 21px; }
 .dialogs > .search-trigger { text-align: left; font-size: 13px; color: var(--muted); margin: 0 5px; }
 .list-label { margin-block: 19px 8px; }
-.list-label span, .composer small span { float: right; }
-.contact { background: none; text-align: left; width: 100%; min-width: 0; display: grid; grid-template-columns: auto minmax(0, 1fr) auto; gap: 9px; align-items: center; padding: 12px 9px; border-radius: 8px; }
+.list-label span { float: right; }
+.contact { background: none; text-align: left; width: 100%; min-width: 0; display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 9px; align-items: center; padding: 12px 9px; border-radius: 8px; }
 .contact:hover, .contact[aria-pressed=true] { background: #242d1d; }
-.contact small { display: block; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-size: 10px; }
-.contact time { font-size: 10px; }
 .own-id { text-align: left; margin-top: auto; }
 .own-id small { display: block; font-size: 10px; }
 .chat { display: flex; min-width: 0; min-height: 0; flex-direction: column; }
@@ -95,13 +93,8 @@ figcaption { position: absolute; top: calc(50% + 85px); color: var(--muted); fon
 .notice { margin: 14px clamp(12px, 2.5vw, 32px) 0; padding: 12px; border-radius: 8px; color: var(--muted); background: #171e11; font-size: 13px; }
 .notice span { color: var(--lime); padding-right: 8px; }
 .history { overflow: auto; flex: 1; padding: 16px clamp(12px, 3vw, 40px); }
-.day { display: block; text-align: center; font-size: 10px; margin-bottom: 18px; }
-.bubble { width: fit-content; max-width: min(80%, 414px); background: #191d18; padding: 11px 14px; border-radius: 8px; margin-bottom: 16px; overflow-wrap: anywhere; }
-.bubble.outgoing { margin-left: auto; background: #29371d; }
-.bubble time { display: block; text-align: right; font-size: 10px; }
 .composer { padding: 0 clamp(12px, 2.5vw, 32px) 12px; }
 .composer .field { padding: 6px 7px 6px 14px; }
-.composer small { display: block; font-size: 10px; margin-top: 5px; }
 dialog { width: min(520px, calc(100% - 24px)); max-height: calc(100svh - 24px); border: 1px solid var(--line); border-radius: 16px; background: var(--panel); padding: clamp(20px, 4vw, 32px); }
 dialog::backdrop { background: #000a; }
 dialog .close { position: absolute; right: 16px; top: 14px; font-size: 22px; }
