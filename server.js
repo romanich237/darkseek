@@ -6,6 +6,7 @@ const files = new Map([
   ['/', ['index.html', 'text/html']],
   ['/index.html', ['index.html', 'text/html']],
   ['/style.css', ['style.css', 'text/css']],
+  ['/logo.png', ['logo.png', 'image/png']],
 ]);
 
 createServer(async (req, res) => {
@@ -24,7 +25,7 @@ createServer(async (req, res) => {
     const [name, type] = file;
     const content = await readFile(join(__dirname, name));
     res.writeHead(200, {
-      'Content-Type': type + '; charset=utf-8',
+      'Content-Type': type.startsWith('text/') ? type + '; charset=utf-8' : type,
       'Content-Length': content.length,
       'X-Content-Type-Options': 'nosniff',
     });

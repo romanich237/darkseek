@@ -296,10 +296,7 @@ figcaption {
   background: #26321c;
 }
 .mark {
-  background: var(--lime);
-  color: #11150f;
-  font-size: 25px;
-  font-weight: 800;
+  display: block;
   margin-bottom: 22px;
 }
 .rail-bottom {
