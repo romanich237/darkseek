@@ -1,0 +1,255 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Darkseek</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main id="auth" class="auth">
+    <aside class="brand">
+      <strong>darkseek</strong><small>/ НИЧЕГО ЛИШНЕГО</small>
+      <h1>Ваши слова.<br>Не ваша личность.</h1>
+      <p>Пространство для общения без номера<br> телефона, почты и настоящего имени.</p>
+      <figure class="orbit">
+        <i></i><i></i><i></i><i></i>
+        <div class="key-card"><span>⚿</span> •••• •••• •••• ••••</div>
+        <figcaption>16 СИМВОЛОВ. ТОЛЬКО ВАШ ДОСТУП.</figcaption>
+      </figure>
+      <footer><span>♧</span> Без телефона <span></span> Без почты <span></span> Без имени</footer>
+    </aside>
+    <section class="access">
+      <small class="locale">RU / DARKSEEK</small>
+      <form id="login" class="auth-form">
+        <span class="accent" aria-hidden="true">⚿</span>
+        <h2>С возвращением<br>в тень.</h2>
+        <p>Один ключ — всё, что нужно для входа.</p>
+        <label for="access-key">Ключ доступа</label>
+        <div class="field"><input id="access-key" value="V7Q9 N4RX 2K8M T6WP" maxlength="19" autocomplete="off" spellcheck="false"><span aria-hidden="true">♙</span></div>
+        <small id="key-status" aria-live="polite">16 / 16 · Демонстрационный ключ</small>
+        <button class="primary">Войти в Darkseek <span>→</span></button>
+        <button class="secondary" id="create" type="button">Создать анонимный профиль <span>⚿</span></button>
+        <p class="hint">Нет ключа? Создайте новый профиль — без регистрации по телефону и электронной почте.</p>
+        <small class="note">Ключ нельзя восстановить. Храните его в безопасном месте.</small>
+      </form>
+      <section id="new-key" class="auth-form" hidden>
+        <button class="quiet back" id="back" type="button">← &nbsp; Назад ко входу</button>
+        <h2>Ваша анонимность<br>начинается с ключа.</h2>
+        <p>Мы не просим личных данных. Сохраните ключ: он заменяет логин и пароль.</p>
+        <small class="accent">ВАШ КЛЮЧ ДОСТУПА · 16 СИМВОЛОВ</small>
+        <div class="field key-value"><code>V7Q9 N4RX 2K8M T6WP</code></div>
+        <small>Пробелы — только для удобства чтения.</small>
+        <aside class="warning"><strong>Потеряете ключ — потеряете доступ.</strong><p>Для новых диалогов используйте публичный ID, а не ключ.</p></aside>
+        <button id="continue" class="primary">Я сохранил ключ. Продолжить <span>→</span></button>
+        <p class="hint">В прототипе используется пример ключа.</p>
+      </section>
+    </section>
+  </main>
+  <main id="messenger" class="messenger" hidden>
+    <nav class="rail" aria-label="Навигация">
+      <span class="mark">d.</span>
+      <button id="dialogs-toggle" class="selected" aria-label="Диалоги">☏</button>
+      <button class="profile-trigger" aria-label="Приватность">♧</button>
+      <button class="profile-trigger rail-bottom" aria-label="Настройки профиля">⚙</button>
+      <button id="logout" aria-label="Выйти">⇥</button>
+      <span class="avatar" aria-hidden="true">✣</span>
+    </nav>
+    <aside class="dialogs" aria-label="Список диалогов">
+      <strong>darkseek</strong><small>АНОНИМНЫЙ МЕССЕНДЖЕР</small>
+      <div class="section-heading"><h2>Диалоги</h2><button class="primary search-trigger" aria-label="Новый диалог">+</button></div>
+      <button class="secondary search-trigger">⌕ &nbsp; Найти по публичному ID</button>
+      <small class="list-label">ВСЕ ДИАЛОГИ <span id="contact-count"></span></small>
+      <div id="contacts"></div>
+      <button class="secondary profile-trigger own-id"><small>ВАШ ПУБЛИЧНЫЙ ID</small><code>shade_8f3c</code></button>
+    </aside>
+    <section class="chat">
+      <header><span class="avatar" id="chat-avatar" aria-hidden="true">✦</span><div><code id="peer">ghost_7a2f</code><small>Публичный ID · личные данные скрыты</small></div><button class="quiet profile-trigger" aria-label="О приватности диалога">ⓘ</button></header>
+      <div class="notice"><span>⚿</span> Делитесь публичным ID. Личный ключ нужен только для входа.</div>
+      <div id="history" class="history" role="log" aria-label="Переписка"></div>
+      <form id="composer" class="composer">
+        <div class="field"><input id="message" aria-label="Сообщение" maxlength="500" placeholder="Написать сообщение…"><button class="primary" id="send" aria-label="Отправить сообщение">➤</button></div>
+        <small>Демо-переписка <span>Enter — отправить</span></small>
+      </form>
+    </section>
+  </main>
+  <dialog id="search">
+    <form id="search-form">
+      <button class="quiet close" type="button" aria-label="Закрыть">×</button>
+      <span class="accent" aria-hidden="true">☏</span>
+      <h2>Новый диалог</h2>
+      <p>Найдите человека по публичному ID.<br>Его личный ключ доступа не нужен.</p>
+      <label for="public-id">Публичный ID собеседника</label>
+      <div class="field"><span>⌕</span><input id="public-id" value="ghost_7a2f" maxlength="24" required autocomplete="off"></div>
+      <small>Пример ID в этом прототипе</small>
+      <button class="primary">Открыть диалог <span>→</span></button>
+      <small>Никогда не вводите здесь свой 16-символьный ключ.</small>
+    </form>
+  </dialog>
+  <dialog id="profile">
+    <button class="quiet close" type="button" aria-label="Закрыть">×</button>
+    <span class="avatar" aria-hidden="true">♧</span>
+    <h2>Ваша личность — вне чата.</h2>
+    <p>Без телефона, почты и настоящего имени.</p>
+    <div class="field public-key"><small>ЭТИМ ID МОЖНО ПОДЕЛИТЬСЯ</small><code>shade_8f3c</code></div>
+    <strong>Личный ключ — только для вас</strong>
+    <p>Ключ из 16 символов открывает доступ к профилю. Не передавайте его собеседникам.</p>
+    <p class="hint">Это демонстрация интерфейса. Сообщения хранятся только до перезагрузки страницы.</p>
+    <button class="primary" id="profile-ok">Понятно</button>
+  </dialog>
+  <script>
+    const $ = id => document.getElementById(id);
+    const contacts = [
+      ['ghost_7a2f', 'То, что нужно. Остаёмся на связи.', '14:38', '#c5f569', '✦'],
+      ['echo_09b1', 'Спасибо, загляну вечером.', '13:51', '#b0b8f6', '✣'],
+      ['noir_f018', 'Принято. До завтра.', '12:06', '#78c6b7', '✤'],
+      ['void_c4e2', 'Нашёл интересную идею.', 'Вчера', '#d0ac7f', '✥'],
+      ['moss_22d9', 'Давай обсудим здесь.', 'Вчера', '#a4c48d', '✦'],
+      ['veil_8c01', 'Хорошо, договорились.', 'Пн', '#bfabd4', '✣'],
+    ];
+    const threads = new Map([['ghost_7a2f', [
+      ['Привет. Здесь можно просто быть собой?', '14:32', false],
+      ['Да. Здесь достаточно псевдонима. Никаких номеров и настоящих имён.', '14:33', true],
+      ['Отлично. А как добавить нового человека?', '14:35', false],
+      ['По публичному ID. Ключ доступа остаётся только у тебя.', '14:36', true],
+      ['То, что нужно. Остаёмся на связи.', '14:38', false],
+    ]]]);
+    let active = contacts[0][0];
+
+    function renderChat() {
+      const history = $('history');
+      const day = document.createElement('small');
+      day.className = 'day';
+      day.textContent = 'СЕГОДНЯ';
+      history.replaceChildren(day);
+      for (const [text, time, outgoing] of threads.get(active) || []) {
+        const bubble = document.createElement('article');
+        bubble.className = outgoing ? 'bubble outgoing' : 'bubble';
+        const message = document.createElement('p');
+        message.textContent = text;
+        const timestamp = document.createElement('time');
+        timestamp.textContent = outgoing ? time + ' ✓✓' : time;
+        bubble.append(message, timestamp);
+        history.append(bubble);
+      }
+      history.scrollTop = history.scrollHeight;
+    }
+
+    function renderContacts() {
+      $('contact-count').textContent = contacts.length;
+      $('contacts').replaceChildren(...contacts.map(([id, preview, time, color, mark]) => {
+        const button = document.createElement('button');
+        button.className = 'contact';
+        button.setAttribute('aria-pressed', id === active);
+        const avatar = document.createElement('span');
+        avatar.className = 'avatar';
+        avatar.style.color = color;
+        avatar.textContent = mark;
+        const summary = document.createElement('span');
+        const name = document.createElement('code');
+        name.textContent = id;
+        const note = document.createElement('small');
+        note.textContent = preview;
+        summary.append(name, note);
+        const timestamp = document.createElement('time');
+        timestamp.textContent = time;
+        button.append(avatar, summary, timestamp);
+        button.addEventListener('click', () => openChat(id));
+        return button;
+      }));
+    }
+
+    function openChat(id) {
+      active = id;
+      const [, , , color, mark] = contacts.find(contact => contact[0] === id);
+      $('peer').textContent = id;
+      $('chat-avatar').textContent = mark;
+      $('chat-avatar').style.color = color;
+      $('message').value = id === 'ghost_7a2f' && threads.get(id).length === 5 ? 'Хорошо, до связи.' : '';
+      $('send').disabled = !$('message').value;
+      $('messenger').classList.remove('show-dialogs');
+      $('dialogs-toggle').setAttribute('aria-expanded', 'false');
+      renderContacts();
+      renderChat();
+    }
+
+    function enter() {
+      $('auth').hidden = true;
+      $('messenger').hidden = false;
+      openChat(active);
+    }
+
+    $('access-key').addEventListener('input', event => {
+      const key = event.target.value.toUpperCase().replace(/[^A-Z0-9]/g, '').slice(0, 16);
+      event.target.value = key.match(/.{1,4}/g)?.join(' ') || '';
+      $('key-status').textContent = key.length + ' / 16';
+    });
+    $('login').addEventListener('submit', event => {
+      event.preventDefault();
+      if ($('access-key').value.replace(/ /g, '') === 'V7Q9N4RX2K8MT6WP') enter();
+      else {
+        $('key-status').textContent = 'Демо-ключ: V7Q9 N4RX 2K8M T6WP';
+        $('access-key').focus();
+      }
+    });
+    $('create').addEventListener('click', () => {
+      $('login').hidden = true;
+      $('new-key').hidden = false;
+      $('back').focus();
+    });
+    $('back').addEventListener('click', () => {
+      $('new-key').hidden = true;
+      $('login').hidden = false;
+      $('access-key').focus();
+    });
+    $('continue').addEventListener('click', enter);
+    $('logout').addEventListener('click', () => {
+      $('messenger').hidden = true;
+      $('auth').hidden = false;
+      $('back').click();
+    });
+    $('dialogs-toggle').addEventListener('click', () => {
+      const open = $('messenger').classList.toggle('show-dialogs');
+      $('dialogs-toggle').setAttribute('aria-expanded', open);
+    });
+    for (const button of document.querySelectorAll('.search-trigger')) button.addEventListener('click', () => {
+      $('search').showModal();
+      $('public-id').select();
+    });
+    for (const button of document.querySelectorAll('.profile-trigger')) button.addEventListener('click', () => $('profile').showModal());
+    for (const button of document.querySelectorAll('.close')) button.addEventListener('click', () => button.closest('dialog').close());
+    $('profile-ok').addEventListener('click', () => $('profile').close());
+    $('public-id').addEventListener('input', event => event.target.setCustomValidity(''));
+    $('search-form').addEventListener('submit', event => {
+      event.preventDefault();
+      const input = $('public-id');
+      const id = input.value.trim().toLowerCase();
+      if (!contacts.some(contact => contact[0] === id)) {
+        input.setCustomValidity('В демо этот публичный ID не найден.');
+        input.reportValidity();
+        return;
+      }
+      $('search').close();
+      openChat(id);
+    });
+    $('message').addEventListener('input', () => { $('send').disabled = !$('message').value.trim(); });
+    $('composer').addEventListener('submit', event => {
+      event.preventDefault();
+      const input = $('message');
+      const message = input.value.trim();
+      if (!message) return;
+      const time = new Intl.DateTimeFormat('ru-RU', { hour: '2-digit', minute: '2-digit' }).format(new Date());
+      if (!threads.has(active)) threads.set(active, []);
+      threads.get(active).push([message, time, true]);
+      const contact = contacts.find(contact => contact[0] === active);
+      contact[1] = message;
+      contact[2] = time;
+      input.value = '';
+      $('send').disabled = true;
+      renderChat();
+      renderContacts();
+      input.focus();
+    });
+  </script>
+</body>
+</html>
