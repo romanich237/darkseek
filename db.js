@@ -14,7 +14,7 @@ function openDatabase(filename) {
     }
   }
   const db = new DatabaseSync(filename);
-  db.exec('PRAGMA journal_mode = WAL; PRAGMA foreign_keys = ON; PRAGMA busy_timeout = 5000');
+  db.exec('PRAGMA busy_timeout = 5000; PRAGMA journal_mode = DELETE; PRAGMA foreign_keys = ON');
   db.exec(`CREATE TABLE IF NOT EXISTS profiles (
   id TEXT PRIMARY KEY,
   public_id TEXT NOT NULL UNIQUE,
