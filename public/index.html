@@ -17,7 +17,7 @@
       </div>
       <figure class="orbit" aria-hidden="true">
         <i></i><i></i><i></i>
-        <div class="key-card"><span>✦</span><code>•••• •••• •••• ••••</code></div>
+        <div class="key-card"><code>•••• •••• •••• ••••</code></div>
       </figure>
       <footer>Ваш ключ открывает профиль.<br>Публичный ID помогает найти собеседника.</footer>
     </aside>
@@ -32,13 +32,13 @@
           <button id="toggle-key" class="quiet key-toggle" type="button" aria-label="Показать ключ" aria-pressed="false">Показать</button>
         </div>
         <small id="key-status" aria-live="polite">0 / 16</small>
-        <button class="primary">Войти в DarkSeek <span>→</span></button>
+        <button class="primary">Войти в DarkSeek </button>
         <div class="auth-divider"><span>Впервые здесь?</span></div>
-        <button class="secondary" id="create" type="button">Создать профиль <span>+</span></button>
+        <button class="secondary" id="create" type="button">Создать профиль</button>
         <small class="note">Сохраните ключ в надёжном месте. Он заменяет логин и пароль.</small>
       </form>
       <section id="new-key" class="auth-form" hidden>
-        <button class="quiet back" id="back" type="button">← &nbsp; Назад ко входу</button>
+        <button class="quiet back" id="back" type="button">Назад ко входу</button>
         <h2>Сохраните ваш ключ</h2>
         <p>Мы не просим личных данных. Сохраните ключ: он заменяет логин и пароль.</p>
         <small class="accent">ВАШ КЛЮЧ ДОСТУПА · 16 СИМВОЛОВ</small>
@@ -51,27 +51,27 @@
           <strong>Потеряете ключ — потеряете доступ.</strong>
           <p>Для новых диалогов используйте публичный ID, а не ключ.</p>
         </aside>
-        <button id="continue" class="primary">Я сохранил ключ. Продолжить <span>→</span></button>
+        <button id="continue" class="primary">Я сохранил ключ. Продолжить </button>
       </section>
     </section>
   </main>
   <main id="messenger" class="messenger" hidden>
     <nav class="rail" aria-label="Навигация">
       <img class="mark" src="logo.png" alt="DarkSeek" width="40" height="40">
-      <button id="dialogs-toggle" class="selected" aria-label="Диалоги" aria-controls="dialogs" aria-expanded="true">☏</button>
-      <button class="profile-trigger" aria-label="Приватность">♧</button>
-      <button class="profile-trigger rail-bottom" aria-label="Настройки профиля">⚙</button>
-      <button id="logout" aria-label="Выйти">⇥</button>
-      <span class="avatar" aria-hidden="true">✣</span>
+      <button id="dialogs-toggle" class="selected" aria-label="Диалоги" aria-controls="dialogs" aria-expanded="true"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 11.5a8.4 8.4 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.4 8.4 0 0 1-3.8-.9L3 21l1.9-5.7a8.4 8.4 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.4 8.4 0 0 1 3.8-.9h.5a8.5 8.5 0 0 1 8 8z"/></svg></button>
+      <button class="profile-trigger" aria-label="Приватность"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-11V5l-8-3-8 3v6c0 7 8 11 8 11z"/></svg></button>
+      <button class="profile-trigger rail-bottom" aria-label="Настройки профиля"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21v-2a8 8 0 0 1 16 0v2"/></svg></button>
+      <button id="logout" aria-label="Выйти"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4M16 17l5-5-5-5M21 12H9"/></svg></button>
+      <span class="avatar" aria-hidden="true"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21v-2a8 8 0 0 1 16 0v2"/></svg></span>
     </nav>
     <aside id="dialogs" class="dialogs" aria-label="Список диалогов">
       <strong>DarkSeek</strong>
       <small>АНОНИМНЫЙ МЕССЕНДЖЕР</small>
       <div class="section-heading">
         <h2>Диалоги</h2>
-        <button class="primary search-trigger" aria-label="Новый диалог">+</button>
+        <button class="primary search-trigger" aria-label="Новый диалог"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></button>
       </div>
-      <button class="secondary search-trigger">⌕ &nbsp; Найти по публичному ID</button>
+      <button class="secondary search-trigger"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="10.5" cy="10.5" r="7.5"/><path d="m16 16 5 5"/></svg> Найти по публичному ID</button>
       <small class="list-label">ВСЕ ДИАЛОГИ <span id="contact-count"></span></small>
       <div id="contacts"></div>
       <button class="secondary profile-trigger own-id">
@@ -81,47 +81,47 @@
     </aside>
     <section class="chat" aria-label="Переписка">
       <header>
-        <span class="avatar" id="chat-avatar" aria-hidden="true">✦</span>
+        <span class="avatar" id="chat-avatar" aria-hidden="true"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21v-2a8 8 0 0 1 16 0v2"/></svg></span>
         <div>
           <code id="peer" tabindex="-1"></code>
           <small>Публичный ID · личные данные скрыты</small>
         </div>
-        <button class="quiet profile-trigger" aria-label="О приватности диалога">ⓘ</button>
+        <button class="quiet profile-trigger" aria-label="О приватности диалога"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 11v6M12 7h.01"/></svg></button>
       </header>
       <div class="notice">
-        <span>⚿</span> Делитесь публичным ID. Личный ключ нужен только для входа.
+        Делитесь публичным ID. Личный ключ нужен только для входа.
       </div>
       <p id="chat-status" role="status"></p>
       <div class="history" id="history" role="log" aria-label="Сообщения"></div>
       <form class="composer" id="composer" hidden>
         <div class="field">
           <textarea id="message" aria-label="Сообщение" maxlength="500" rows="2" placeholder="Написать сообщение…"></textarea>
-          <button class="primary" id="send" type="submit" aria-label="Отправить сообщение" disabled>➤</button>
+          <button class="primary" id="send" type="submit" aria-label="Отправить сообщение" disabled><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m22 2-7 20-4-9-9-4 20-7ZM22 2 11 13"/></svg></button>
         </div>
       </form>
     </section>
   </main>
   <dialog id="search">
     <form id="search-form">
-      <button class="quiet close" type="button" aria-label="Закрыть">×</button>
-      <span class="accent" aria-hidden="true">☏</span>
+      <button class="quiet close" type="button" aria-label="Закрыть"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 6 12 12M6 18 18 6"/></svg></button>
+      <span class="accent" aria-hidden="true"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 11.5a8.4 8.4 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.4 8.4 0 0 1-3.8-.9L3 21l1.9-5.7a8.4 8.4 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.4 8.4 0 0 1 3.8-.9h.5a8.5 8.5 0 0 1 8 8z"/></svg></span>
       <h2>Новый диалог</h2>
       <p>Найдите человека по публичному ID.<br>Его личный ключ доступа не нужен.</p>
       <label for="public-id">Публичный ID собеседника</label>
       <div class="field">
-        <span>⌕</span>
+        <span><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="10.5" cy="10.5" r="7.5"/><path d="m16 16 5 5"/></svg></span>
         <input id="public-id" maxlength="38" required autocomplete="off" spellcheck="false">
       </div>
       <small id="search-error" role="status"></small>
-      <button class="primary">Открыть диалог <span>→</span></button>
+      <button class="primary">Открыть диалог </button>
       <small>Никогда не вводите здесь свой 16-символьный ключ.</small>
     </form>
   </dialog>
   <dialog id="profile">
-    <button class="quiet close" type="button" aria-label="Закрыть">×</button>
-    <span class="avatar" aria-hidden="true">♧</span>
-    <h2>Ваша личность — вне чата.</h2>
-    <p>Без телефона, почты и настоящего имени.</p>
+    <button class="quiet close" type="button" aria-label="Закрыть"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 6 12 12M6 18 18 6"/></svg></button>
+    <span class="avatar" aria-hidden="true"><svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-11V5l-8-3-8 3v6c0 7 8 11 8 11z"/></svg></span>
+    <h2>Ваш профиль</h2>
+    <p>Ваш публичный ID и доступ к профилю.</p>
     <div class="field public-key">
       <small>ЭТИМ ID МОЖНО ПОДЕЛИТЬСЯ</small>
       <code></code>

@@ -55,7 +55,7 @@ function renderContacts() {
     const avatar = document.createElement('span');
     avatar.className = 'avatar';
     avatar.setAttribute('aria-hidden', 'true');
-    avatar.textContent = '✦';
+    avatar.textContent = dialog.peer.slice(-2).toUpperCase();
     const summary = document.createElement('span');
     const name = document.createElement('code');
     name.textContent = dialog.peer;
@@ -118,6 +118,7 @@ async function openChat(id) {
   active = id;
   lastHistory = undefined;
   $('peer').textContent = dialog.peer;
+  $('chat-avatar').textContent = dialog.peer.slice(-2).toUpperCase();
   $('messenger').classList.remove('show-dialogs');
   syncDialogs();
   $('composer').hidden = false;

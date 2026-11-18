@@ -735,3 +735,21 @@ dialog p {
     to { opacity: 1; transform: translateY(0); }
   }
 }
+
+.icon {
+  width: 20px;
+  height: 20px;
+  display: inline-block;
+  flex: none;
+  vertical-align: middle;
+}
+
+.rail button, .composer .primary, .section-heading button, dialog .close {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.avatar {
+  font: 600 14px var(--mono);
+}
