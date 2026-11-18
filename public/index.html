@@ -36,10 +36,10 @@
         <p>Один ключ — всё, что нужно для входа.</p>
         <label for="access-key">Ключ доступа</label>
         <div class="field">
-          <input id="access-key" value="V7Q9 N4RX 2K8M T6WP" maxlength="19" autocomplete="off" spellcheck="false">
+          <input id="access-key" type="password" maxlength="19" autocomplete="off" spellcheck="false">
           <span aria-hidden="true">♙</span>
         </div>
-        <small id="key-status" aria-live="polite">16 / 16 · Демонстрационный ключ</small>
+        <small id="key-status" aria-live="polite">0 / 16</small>
         <button class="primary">Войти в Darkseek <span>→</span></button>
         <button class="secondary" id="create" type="button">Создать анонимный профиль <span>⚿</span></button>
         <p class="hint">Нет ключа? Создайте новый профиль — без регистрации по телефону и электронной почте.</p>
@@ -51,7 +51,7 @@
         <p>Мы не просим личных данных. Сохраните ключ: он заменяет логин и пароль.</p>
         <small class="accent">ВАШ КЛЮЧ ДОСТУПА · 16 СИМВОЛОВ</small>
         <div class="field key-value">
-          <code>V7Q9 N4RX 2K8M T6WP</code>
+          <code></code>
         </div>
         <small>Пробелы — только для удобства чтения.</small>
         <aside class="warning">
@@ -59,20 +59,19 @@
           <p>Для новых диалогов используйте публичный ID, а не ключ.</p>
         </aside>
         <button id="continue" class="primary">Я сохранил ключ. Продолжить <span>→</span></button>
-        <p class="hint">В прототипе используется пример ключа.</p>
       </section>
     </section>
   </main>
   <main id="messenger" class="messenger" hidden>
     <nav class="rail" aria-label="Навигация">
       <img class="mark" src="logo.png" alt="Darkseek" width="40" height="40">
-      <button id="dialogs-toggle" class="selected" aria-label="Диалоги">☏</button>
+      <button id="dialogs-toggle" class="selected" aria-label="Диалоги" aria-controls="dialogs" aria-expanded="true">☏</button>
       <button class="profile-trigger" aria-label="Приватность">♧</button>
       <button class="profile-trigger rail-bottom" aria-label="Настройки профиля">⚙</button>
       <button id="logout" aria-label="Выйти">⇥</button>
       <span class="avatar" aria-hidden="true">✣</span>
     </nav>
-    <aside class="dialogs" aria-label="Список диалогов">
+    <aside id="dialogs" class="dialogs" aria-label="Список диалогов">
       <strong>darkseek</strong>
       <small>АНОНИМНЫЙ МЕССЕНДЖЕР</small>
       <div class="section-heading">
@@ -84,14 +83,14 @@
       <div id="contacts"></div>
       <button class="secondary profile-trigger own-id">
         <small>ВАШ ПУБЛИЧНЫЙ ID</small>
-        <code>shade_8f3c</code>
+        <code></code>
       </button>
     </aside>
-    <section class="chat">
+    <section class="chat" aria-label="Переписка">
       <header>
         <span class="avatar" id="chat-avatar" aria-hidden="true">✦</span>
         <div>
-          <code id="peer">ghost_7a2f</code>
+          <code id="peer" tabindex="-1"></code>
           <small>Публичный ID · личные данные скрыты</small>
         </div>
         <button class="quiet profile-trigger" aria-label="О приватности диалога">ⓘ</button>
@@ -99,11 +98,12 @@
       <div class="notice">
         <span>⚿</span> Делитесь публичным ID. Личный ключ нужен только для входа.
       </div>
+      <p id="chat-status" role="status"></p>
       <div class="history" id="history" role="log" aria-label="Сообщения"></div>
-      <form class="composer" id="composer">
+      <form class="composer" id="composer" hidden>
         <div class="field">
-          <input id="message" aria-label="Сообщение" maxlength="500" autocomplete="off" required placeholder="Написать сообщение…">
-          <button class="primary" type="submit" aria-label="Отправить сообщение">➤</button>
+          <textarea id="message" aria-label="Сообщение" maxlength="500" rows="2" placeholder="Написать сообщение…"></textarea>
+          <button class="primary" id="send" type="submit" aria-label="Отправить сообщение" disabled>➤</button>
         </div>
       </form>
     </section>
@@ -117,9 +117,9 @@
       <label for="public-id">Публичный ID собеседника</label>
       <div class="field">
         <span>⌕</span>
-        <input id="public-id" value="ghost_7a2f" maxlength="24" required autocomplete="off">
+        <input id="public-id" maxlength="38" required autocomplete="off" spellcheck="false">
       </div>
-      <small>Пример ID в этом прототипе</small>
+      <small id="search-error" role="status"></small>
       <button class="primary">Открыть диалог <span>→</span></button>
       <small>Никогда не вводите здесь свой 16-символьный ключ.</small>
     </form>
@@ -131,149 +131,14 @@
     <p>Без телефона, почты и настоящего имени.</p>
     <div class="field public-key">
       <small>ЭТИМ ID МОЖНО ПОДЕЛИТЬСЯ</small>
-      <code>shade_8f3c</code>
+      <code></code>
     </div>
     <strong>Личный ключ — только для вас</strong>
     <p>Ключ из 16 символов открывает доступ к профилю. Не передавайте его собеседникам.</p>
-    <p class="hint">Это демонстрация интерфейса.</p>
+    <button class="secondary" id="copy-id" type="button">Скопировать публичный ID</button>
+    <p id="copy-status" role="status"></p>
     <button class="primary" id="profile-ok">Понятно</button>
   </dialog>
-  <script>
-    const $ = id => document.getElementById(id);
-    const contacts = [
-      ['ghost_7a2f', '#c5f569', '✦'],
-      ['echo_09b1', '#b0b8f6', '✣'],
-      ['noir_f018', '#78c6b7', '✤'],
-      ['void_c4e2', '#d0ac7f', '✥'],
-      ['moss_22d9', '#a4c48d', '✦'],
-      ['veil_8c01', '#bfabd4', '✣'],
-    ];
-    const threads = new Map();
-    let active = contacts[0][0];
-
-    function renderContacts() {
-      $('contact-count').textContent = contacts.length;
-      $('contacts').replaceChildren(...contacts.map(([id, color, mark]) => {
-        const button = document.createElement('button');
-        button.className = 'contact';
-        button.setAttribute('aria-pressed', id === active);
-        const avatar = document.createElement('span');
-        avatar.className = 'avatar';
-        avatar.style.color = color;
-        avatar.textContent = mark;
-        const summary = document.createElement('span');
-        const name = document.createElement('code');
-        name.textContent = id;
-        summary.append(name);
-        button.append(avatar, summary);
-        button.addEventListener('click', () => openChat(id));
-        return button;
-      }));
-    }
-
-    function renderMessages() {
-      const history = $('history');
-      const messages = threads.get(active) ?? [];
-      const items = messages.map(text => {
-        const item = document.createElement('p');
-        item.className = 'message';
-        item.textContent = text;
-        return item;
-      });
-
-      history.replaceChildren(...items);
-      history.scrollTop = history.scrollHeight;
-    }
-
-    function openChat(id) {
-      active = id;
-      const [, color, mark] = contacts.find(contact => contact[0] === id);
-      $('peer').textContent = id;
-      $('chat-avatar').textContent = mark;
-      $('chat-avatar').style.color = color;
-      $('messenger').classList.remove('show-dialogs');
-      $('dialogs-toggle').setAttribute('aria-expanded', 'false');
-      renderContacts();
-      renderMessages();
-    }
-
-    function enter() {
-      $('auth').hidden = true;
-      $('messenger').hidden = false;
-      openChat(active);
-    }
-
-    $('access-key').addEventListener('input', event => {
-      const key = event.target.value.toUpperCase().replace(/[^A-Z0-9]/g, '').slice(0, 16);
-      event.target.value = key.match(/.{1,4}/g)?.join(' ') || '';
-      $('key-status').textContent = key.length + ' / 16';
-    });
-    $('login').addEventListener('submit', event => {
-      event.preventDefault();
-      if ($('access-key').value.replace(/ /g, '') === 'V7Q9N4RX2K8MT6WP') enter();
-      else {
-        $('key-status').textContent = 'Демо-ключ: V7Q9 N4RX 2K8M T6WP';
-        $('access-key').focus();
-      }
-    });
-    $('create').addEventListener('click', () => {
-      $('login').hidden = true;
-      $('new-key').hidden = false;
-      $('back').focus();
-    });
-    $('back').addEventListener('click', () => {
-      $('new-key').hidden = true;
-      $('login').hidden = false;
-      $('access-key').focus();
-    });
-    $('continue').addEventListener('click', enter);
-    $('logout').addEventListener('click', () => {
-      $('messenger').hidden = true;
-      $('auth').hidden = false;
-      $('back').click();
-    });
-    $('dialogs-toggle').addEventListener('click', () => {
-      const open = $('messenger').classList.toggle('show-dialogs');
-      $('dialogs-toggle').setAttribute('aria-expanded', open);
-    });
-    for (const button of document.querySelectorAll('.search-trigger')) button.addEventListener('click', () => {
-      $('search').showModal();
-      $('public-id').select();
-    });
-    for (const button of document.querySelectorAll('.profile-trigger')) {
-      button.addEventListener('click', () => $('profile').showModal());
-    }
-    for (const button of document.querySelectorAll('.close')) {
-      button.addEventListener('click', () => button.closest('dialog').close());
-    }
-    $('profile-ok').addEventListener('click', () => $('profile').close());
-    $('public-id').addEventListener('input', event => event.target.setCustomValidity(''));
-    $('search-form').addEventListener('submit', event => {
-      event.preventDefault();
-      const input = $('public-id');
-      const id = input.value.trim().toLowerCase();
-      if (!contacts.some(contact => contact[0] === id)) {
-        input.setCustomValidity('В демо этот публичный ID не найден.');
-        input.reportValidity();
-        return;
-      }
-      $('search').close();
-      openChat(id);
-    });
-    $('composer').addEventListener('submit', event => {
-      event.preventDefault();
-      const input = $('message');
-      const text = input.value.trim();
-
-      if (!text) return;
-
-      const messages = threads.get(active) ?? [];
-      messages.push(text);
-      threads.set(active, messages);
-      input.value = '';
-      renderMessages();
-      input.focus();
-    });
-  </script>
+  <script src="app.js" defer></script>
 </body>
 </html>
