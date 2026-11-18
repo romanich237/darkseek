@@ -1,4 +1,4 @@
-import { database } from './database.mjs';
+import { database } from './db.js';
 
 const cookieName = 'darkseek_session';
 const sessionAge = 604800;

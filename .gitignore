@@ -1,2 +1,5 @@
 node_modules/
 data/
+users.db
+users.db-wal
+users.db-shm

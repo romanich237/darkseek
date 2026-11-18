@@ -5,7 +5,7 @@
   "engines": { "node": ">=24.0.0" },
   "scripts": {
     "start": "node server.js",
-    "check": "node --check server.js && node --check api.mjs && node --check database.mjs && node --check public/app.js && node --check update.js",
+    "check": "node --check server.js && node --check api.mjs && node --check db.js && node --check public/app.js && node --check update.js",
     "update:check": "node update.js",
     "update": "node update.js --apply"
   }

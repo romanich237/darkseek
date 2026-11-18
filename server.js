@@ -1,51 +1,14 @@
 const { createServer } = require('node:http');
-const { DatabaseSync } = require('node:sqlite');
-const { readFileSync, mkdirSync, readdirSync } = require('node:fs');
-const { resolve, dirname, join } = require('node:path');
+const { openDatabase } = require('./db.js');
+const { readFileSync } = require('node:fs');
+const { resolve, join } = require('node:path');
 const { Readable } = require('node:stream');
 const { pipeline } = require('node:stream/promises');
 const config = require('./config.json');
 
 async function start() {
   const filename = resolve(__dirname, config.database);
-  mkdirSync(dirname(filename), { recursive: true });
-  const sqlite = new DatabaseSync(filename);
-  sqlite.exec('PRAGMA journal_mode = WAL; PRAGMA foreign_keys = ON; PRAGMA busy_timeout = 5000');
-  sqlite.exec('CREATE TABLE IF NOT EXISTS schema_migrations (name TEXT PRIMARY KEY)');
-  for (const name of readdirSync(join(__dirname, 'migrations')).filter(name => name.endsWith('.sql')).sort()) {
-    if (sqlite.prepare('SELECT name FROM schema_migrations WHERE name = ?').get(name)) continue;
-    sqlite.exec('BEGIN IMMEDIATE');
-    try {
-      sqlite.exec(readFileSync(join(__dirname, 'migrations', name), 'utf8'));
-      sqlite.prepare('INSERT INTO schema_migrations VALUES (?)').run(name);
-      sqlite.exec('COMMIT');
-    } catch (error) {
-      sqlite.exec('ROLLBACK');
-      throw error;
-    }
-  }
-  // Keep synchronous SQLite statements inside one transaction without await boundaries.
-  const wrap = (sql, args = []) => ({
-    bind: (...values) => wrap(sql, values),
-    first: () => sqlite.prepare(sql).get(...args) ?? null,
-    all: () => ({ results: sqlite.prepare(sql).all(...args) }),
-    run: () => sqlite.prepare(sql).run(...args),
-    execute: () => sqlite.prepare(sql).run(...args),
-  });
-  const db = {
-    prepare: sql => wrap(sql),
-    batch(statements) {
-      sqlite.exec('BEGIN IMMEDIATE');
-      try {
-        const results = statements.map(statement => statement.execute());
-        sqlite.exec('COMMIT');
-        return results;
-      } catch (error) {
-        sqlite.exec('ROLLBACK');
-        throw error;
-      }
-    },
-  };
+  const sqlite = openDatabase(filename);
   const assets = new Map();
   const types = {
     'index.html': 'text/html; charset=utf-8',
@@ -75,7 +38,7 @@ async function start() {
         init.duplex = 'half';
       }
       const response = await api.fetch(new Request(url, init), {
-        DB: db,
+        DB: sqlite,
         clientIp: req.socket.remoteAddress,
       });
       res.writeHead(response.status, Object.fromEntries(response.headers));
