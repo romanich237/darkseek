@@ -159,6 +159,10 @@ function leave() {
   $('chat-status').textContent = '';
   $('history').replaceChildren();
   $('access-key').value = '';
+  $('access-key').type = 'password';
+  $('toggle-key').textContent = 'Показать';
+  $('toggle-key').setAttribute('aria-pressed', 'false');
+  $('toggle-key').setAttribute('aria-label', 'Показать ключ');
   $('key-status').textContent = '0 / 16';
   $('new-key').querySelector('code').textContent = '';
   for (const dialog of document.querySelectorAll('dialog[open]')) dialog.close();
@@ -206,6 +210,7 @@ async function authenticate(operation) {
     else {
       $('login').hidden = true;
       $('new-key').hidden = false;
+      $('copy-key-status').textContent = 'Ключ понадобится для входа с другого устройства.';
       const key = $('new-key').querySelector('code');
       key.textContent = data.key.match(/.{4}/g).join(' ');
       $('continue').onclick = () => {
@@ -337,3 +342,20 @@ api('profile')
   .finally(() => {
     for (const button of loginButtons) button.disabled = false;
   });
+
+$('toggle-key').addEventListener('click', () => {
+  const visible = $('access-key').type === 'password';
+  $('access-key').type = visible ? 'text' : 'password';
+  $('toggle-key').textContent = visible ? 'Скрыть' : 'Показать';
+  $('toggle-key').setAttribute('aria-label', visible ? 'Скрыть ключ' : 'Показать ключ');
+  $('toggle-key').setAttribute('aria-pressed', String(visible));
+  $('access-key').focus();
+});
+$('copy-key').addEventListener('click', async () => {
+  try {
+    await navigator.clipboard.writeText($('new-key').querySelector('code').textContent);
+    $('copy-key-status').textContent = 'Ключ скопирован. Сохраните его перед продолжением.';
+  } catch {
+    $('copy-key-status').textContent = 'Выделите ключ и скопируйте его вручную.';
+  }
+});

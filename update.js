@@ -29,7 +29,7 @@ try {
     if (process.argv.includes('--apply')) {
       if (git('status', '--porcelain')) throw new Error('Сначала сохраните локальные изменения в Git.');
       git('merge', '--ff-only', upstream);
-      console.log('Обновления установлены. Перезапустите Darkseek.');
+      console.log('Обновления установлены. Перезапустите DarkSeek.');
     } else {
       console.log('Для установки запустите update.bat или npm run update.');
     }

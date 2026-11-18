@@ -51,7 +51,7 @@ async function start() {
     }
   });
   server.listen(config.port, config.host, () => {
-    console.log(`Darkseek: http://${config.host}:${config.port}`);
+    console.log(`DarkSeek: http://${config.host}:${config.port}`);
   });
   for (const signal of ['SIGINT', 'SIGTERM']) {
     process.once(signal, () => server.close(() => { sqlite.close(); process.exit(0); }));

@@ -3,57 +3,50 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Darkseek</title>
+  <title>DarkSeek</title>
   <link rel="icon" type="image/png" href="logo.png">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
   <main id="auth" class="auth">
     <aside class="brand">
-      <strong>darkseek</strong>
-      <small>/ НИЧЕГО ЛИШНЕГО</small>
-      <h1>Ваши слова.<br>Не ваша личность.</h1>
-      <p>Пространство для общения без номера<br> телефона, почты и настоящего имени.</p>
-      <figure class="orbit">
-        <i></i>
-        <i></i>
-        <i></i>
-        <i></i>
-        <div class="key-card">
-          <span>⚿</span> •••• •••• •••• ••••
-        </div>
-        <figcaption>16 СИМВОЛОВ. ТОЛЬКО ВАШ ДОСТУП.</figcaption>
+      <div class="brand-name"><img src="logo.png" alt="" width="42" height="42"><strong>DarkSeek</strong></div>
+      <div class="brand-intro">
+        <h1>Общение начинается<br>с одного ключа.</h1>
+        <p>Создайте профиль и общайтесь.<br>Без номера телефона и электронной почты.</p>
+      </div>
+      <figure class="orbit" aria-hidden="true">
+        <i></i><i></i><i></i>
+        <div class="key-card"><span>✦</span><code>•••• •••• •••• ••••</code></div>
       </figure>
-      <footer>
-        <span>♧</span> Без телефона <span></span> Без почты <span></span> Без имени
-      </footer>
+      <footer>Ваш ключ открывает профиль.<br>Публичный ID помогает найти собеседника.</footer>
     </aside>
     <section class="access">
-      <small class="locale">RU / DARKSEEK</small>
+
       <form id="login" class="auth-form">
-        <span class="accent" aria-hidden="true">⚿</span>
-        <h2>С возвращением<br>в тень.</h2>
-        <p>Один ключ — всё, что нужно для входа.</p>
+        <h2>С возвращением</h2>
+        <p>Введите ключ, чтобы открыть свои диалоги.</p>
         <label for="access-key">Ключ доступа</label>
         <div class="field">
-          <input id="access-key" type="password" maxlength="19" autocomplete="off" spellcheck="false">
-          <span aria-hidden="true">♙</span>
+          <input id="access-key" type="password" maxlength="19" autocomplete="current-password" spellcheck="false" autocapitalize="characters" placeholder="•••• •••• •••• ••••" aria-describedby="key-status">
+          <button id="toggle-key" class="quiet key-toggle" type="button" aria-label="Показать ключ" aria-pressed="false">Показать</button>
         </div>
         <small id="key-status" aria-live="polite">0 / 16</small>
-        <button class="primary">Войти в Darkseek <span>→</span></button>
-        <button class="secondary" id="create" type="button">Создать анонимный профиль <span>⚿</span></button>
-        <p class="hint">Нет ключа? Создайте новый профиль — без регистрации по телефону и электронной почте.</p>
-        <small class="note">Ключ нельзя восстановить. Храните его в безопасном месте.</small>
+        <button class="primary">Войти в DarkSeek <span>→</span></button>
+        <div class="auth-divider"><span>Впервые здесь?</span></div>
+        <button class="secondary" id="create" type="button">Создать профиль <span>+</span></button>
+        <small class="note">Сохраните ключ в надёжном месте. Он заменяет логин и пароль.</small>
       </form>
       <section id="new-key" class="auth-form" hidden>
         <button class="quiet back" id="back" type="button">← &nbsp; Назад ко входу</button>
-        <h2>Ваша анонимность<br>начинается с ключа.</h2>
+        <h2>Сохраните ваш ключ</h2>
         <p>Мы не просим личных данных. Сохраните ключ: он заменяет логин и пароль.</p>
         <small class="accent">ВАШ КЛЮЧ ДОСТУПА · 16 СИМВОЛОВ</small>
         <div class="field key-value">
           <code></code>
         </div>
-        <small>Пробелы — только для удобства чтения.</small>
+        <button id="copy-key" class="secondary" type="button">Скопировать ключ</button>
+        <small id="copy-key-status" role="status">Ключ понадобится для входа с другого устройства.</small>
         <aside class="warning">
           <strong>Потеряете ключ — потеряете доступ.</strong>
           <p>Для новых диалогов используйте публичный ID, а не ключ.</p>
@@ -64,7 +57,7 @@
   </main>
   <main id="messenger" class="messenger" hidden>
     <nav class="rail" aria-label="Навигация">
-      <img class="mark" src="logo.png" alt="Darkseek" width="40" height="40">
+      <img class="mark" src="logo.png" alt="DarkSeek" width="40" height="40">
       <button id="dialogs-toggle" class="selected" aria-label="Диалоги" aria-controls="dialogs" aria-expanded="true">☏</button>
       <button class="profile-trigger" aria-label="Приватность">♧</button>
       <button class="profile-trigger rail-bottom" aria-label="Настройки профиля">⚙</button>
@@ -72,7 +65,7 @@
       <span class="avatar" aria-hidden="true">✣</span>
     </nav>
     <aside id="dialogs" class="dialogs" aria-label="Список диалогов">
-      <strong>darkseek</strong>
+      <strong>DarkSeek</strong>
       <small>АНОНИМНЫЙ МЕССЕНДЖЕР</small>
       <div class="section-heading">
         <h2>Диалоги</h2>

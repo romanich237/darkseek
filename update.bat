@@ -5,7 +5,7 @@ cd /d "%~dp0"
 
 :menu
 cls
-echo Darkseek
+echo DarkSeek
 echo.
 echo 1. Проверить обновления
 echo 2. Установить обновления
